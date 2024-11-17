@@ -1,7 +1,10 @@
+using BMG.Services; // Add this line to reference the UserService namespace
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<UserService>(); // Register UserService
 
 var app = builder.Build();
 

@@ -13,7 +13,7 @@ namespace BMG.Models
         public double balance { get; set; }
         public List<Transaction>? transactions { get; set; }
         public Account() {
-            List<Transaction> transactions=new List<Transaction>();
+            this.transactions=new List<Transaction>();
         }
         public Account(string id,string type,double roi,double balance,List<Transaction> transactions) {
             this.id = id;
