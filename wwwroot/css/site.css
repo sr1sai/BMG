@@ -1,0 +1,184 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+/* Navbar */
+.navbar {
+    top:0;
+    position:absolute;
+    width:100%;
+    height:5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.navbar .item {
+    color: #ffffff;
+    padding:50px;
+}
+
+.navbar .item a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.navbar .item a:hover {
+    color: #ffbb00;
+}
+
+/* Container */
+.container {
+    top: 10%;
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.main {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #f4f4f4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+}
+/* Footer */
+.footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.footer .item p {
+    color: #ffffff;
+}
+
+
+/*Tabbed pane in Login.cshtml*/
+/* Tab Container */
+.tab-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Tabs Styling */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+}
+
+.tab-button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: #555;
+}
+
+.tab-button.active {
+    color: #333;
+    background-color: #ffbb00;
+}
+
+/* Tab Content Styling */
+.tab-content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-pane {
+    display: none;
+}
+
+    .tab-pane.active {
+        display: block;
+    }
+
+/* Form Styling */
+.form-item {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #ffbb00;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e0a800;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        margin: 5px 0;
+    }
+
+    .tab-content {
+        padding: 15px;
+    }
+    .navbar .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .navbar .item a {
+            margin: 10px 0;
+        }
+}
