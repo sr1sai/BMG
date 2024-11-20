@@ -62,6 +62,7 @@ public class LoginController : Controller
 
         if (ModelState.IsValid)
         {
+            customer.id = Guid.NewGuid().ToString(); // Generate unique ID for customer
             _userService.customers.Add(customer);
             _userService.usernames.Add(customer.username ?? string.Empty);
             Console.WriteLine("User Registered.");

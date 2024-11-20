@@ -1,0 +1,49 @@
+@model BMG.Models.Account
+
+@{
+    ViewData["Title"] = "Account";
+    var transactions = Model.transactions;
+}
+<div class="main">
+    <div class="navigation">
+        <span>Balance: @Model.balance</span>
+        <a asp-controller="Account" asp-action="Edit">Edit</a>
+        <a asp-controller="Account" asp-action="Transaction">Transaction</a>
+    </div>
+    <div class="list">
+        @if (transactions != null && transactions.Count > 0)
+        {
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Transaction ID</th>
+                    <th>Type</th>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < transactions.Count; i++)
+                {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@transactions[i].Id</td>
+                    <td>@transactions[i].type</td>
+                    <td>@transactions[i].sender</td>
+                    <td>@transactions[i].receiver</td>
+                    <td>@transactions[i].date</td>
+                    <td>@transactions[i].amount</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <p>No Transactions found.</p>
+        }
+    </div>
+</div>

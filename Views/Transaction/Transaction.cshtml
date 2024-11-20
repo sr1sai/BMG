@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Transaction";
+}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="main">
+    <ul class="nav nav-tabs" id="transactionTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="withdraw-tab" data-toggle="tab" href="#withdraw" role="tab" aria-controls="withdraw" aria-selected="true">Withdraw</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="deposit-tab" data-toggle="tab" href="#deposit" role="tab" aria-controls="deposit" aria-selected="false">Deposit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="transfer-tab" data-toggle="tab" href="#transfer" role="tab" aria-controls="transfer" aria-selected="false">Transfer</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="transactionTabsContent">
+        <div class="tab-pane fade show active" id="withdraw" role="tabpanel" aria-labelledby="withdraw-tab">
+            <form method="post" asp-controller="Transaction" asp-action="Withdraw">
+                <div class="form-group">
+                    <label for="withdrawAmount">Amount</label>
+                    <input type="number" class="form-control" id="withdrawAmount" name="amount" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+            <form method="post" asp-controller="Transaction" asp-action="Deposit">
+                <div class="form-group">
+                    <label for="depositAmount">Amount</label>
+                    <input type="number" class="form-control" id="depositAmount" name="amount" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="transfer-tab">
+            <form method="post" asp-controller="Transaction" asp-action="Transfer">
+                <div class="form-group">
+                    <label for="transferAmount">Amount</label>
+                    <input type="number" class="form-control" id="transferAmount" name="amount" required />
+                </div>
+                <div class="form-group">
+                    <label for="receiver">Receiver</label>
+                    <input type="text" class="form-control" id="receiver" name="receiver" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

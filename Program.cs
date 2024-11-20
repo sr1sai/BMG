@@ -1,4 +1,4 @@
-using BMG.Services; // Add this line to reference the UserService namespace
+using BMG.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

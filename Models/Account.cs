@@ -10,6 +10,7 @@ namespace BMG.Models
         public string? id { get; set; }
         public string? type { get; set; }
         public double roi { get; set; }
+        public DateTime doc { get; set; }
         public double balance { get; set; }
         public List<Transaction>? transactions { get; set; }
         public Account() {

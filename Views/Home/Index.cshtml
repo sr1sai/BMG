@@ -1,8 +1,46 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model BMG.Models.Customer
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    ViewData["Title"] = "Home Page";
+    List<Account>? accounts = Model?.accounts;
+}
+<div class="main">
+    <div class="navigation">
+        <a asp-controller="Home" asp-action="NewAccount">New Account</a>
+        <a asp-controller="Home" asp-action="Profile">Profile</a>
+    </div>
+    <div class="list">
+        @if (accounts != null && accounts.Count > 0)
+        {
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Account ID</th>
+                    <th>Type</th>
+                    <th>ROI</th>
+                    <th>Balance</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < accounts.Count; i++)
+                {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@accounts[i].id</td>
+                    <td>@accounts[i].type</td>
+                    <td>@accounts[i].roi</td>
+                    <td>@accounts[i].balance</td>
+                    <td><a asp-controller="Home" asp-action="Select" asp-route-id="@accounts[i].id">Select</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <p>No accounts found.</p>
+        }
+    </div>
 </div>

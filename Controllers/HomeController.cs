@@ -18,18 +18,51 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if(_userService.currentUser!=null)
-            return View();
+        if (_userService.currentUser != null)
+        {
+            return View(_userService.currentUser);
+        }
         else
+        {
             return RedirectToAction("Login", "Login");
+        }
     }
 
-    public IActionResult Privacy()
+    public IActionResult Profile()
     {
         if (_userService.currentUser != null)
-            return View();
+        {
+            return View("~/Views/Customer/Profile.cshtml",_userService.currentUser);
+        }
         else
+        {
             return RedirectToAction("Login", "Login");
+        }
+    }
+
+    public IActionResult NewAccount()
+    {
+        if (_userService.currentUser != null)
+        {
+            return View("~/Views/Account/NewAccount.cshtml");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Login");
+        }
+    }
+
+    public IActionResult Select(Account account)
+    {
+        if (_userService.currentUser != null)
+        {
+            _userService.currentAccount = account;
+            return View("~/Views/Account/Account.cshtml",account);
+        }
+        else
+        {
+            return RedirectToAction("Login", "Login");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

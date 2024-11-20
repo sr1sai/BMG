@@ -1,33 +1,31 @@
 @{
     ViewData["Title"] = "Login Page";
 }
-<div class="tab-container">
-    <div class="tabs">
-        <button class="tab-button active" onclick="showTab('login')">Login</button>
-        <button class="tab-button" onclick="showTab('register')">Register</button>
-    </div>
-
-    <div class="tab-content">
-            <!-- Login Form -->
-        <div id="login" class="tab-pane active">
-            <form class="login_form" method="post" asp-action="Login_form">
-                <div class="form-item">
-                    <input type="text" placeholder="User Name" id="username" name="username"/>
-                </div>
-                <div class="form-item">
-                    <input type="password" placeholder="Password" id="password" name="password" />
-                </div>
-                <div class="form-item">
-                    <input type="submit" value="Submit" />
-                </div>
-            </form>
+<div class="main">
+    <div class="tab-container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('login')">Login</button>
+            <button class="tab-button" onclick="showTab('register')">Register</button>
         </div>
-        <!-- Register Form -->
+
+        <div class="tab-content">
+            <!-- Login Form -->
+            <div id="login" class="tab-pane active">
+                <form class="login_form" method="post" asp-action="Login_form">
+                    <div class="form-item">
+                        <input type="text" placeholder="User Name" id="username" name="username" />
+                    </div>
+                    <div class="form-item">
+                        <input type="password" placeholder="Password" id="password" name="password" />
+                    </div>
+                    <div class="form-item">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+            <!-- Register Form -->
             <div id="register" class="tab-pane">
                 <form class="register_form" method="post" asp-action="Register_form">
-                    <div class="form-item">
-                        <input type="text" placeholder="Customer Id" id="customer_id" name="id" />
-                    </div>
                     <div class="form-item">
                         <input type="text" placeholder="Full Name" id="fullname" name="name" />
                     </div>
@@ -51,8 +49,10 @@
                     </div>
                 </form>
             </div>
+        </div>
     </div>
 </div>
+
 <!-- JavaScript to switch tabs -->
 <script>
     function showTab(tabName) {

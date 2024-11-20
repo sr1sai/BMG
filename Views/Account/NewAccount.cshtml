@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "New Account";
+}
+<div class="main">
+    <form method="post" asp-controller="Account" asp-action="Create">
+        <div class="form-item">
+            <label for="type">Type:</label>
+            <select id="type" name="type" onchange="updateRoi()">
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
+                <option value="Fixed Deposit">Fixed Deposit</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label for="roi">Rate of Interest</label>
+            <input type="text" id="roi" name="roi" readonly value="1%" />
+        </div>
+        <div class="form-item">
+            <label for="doc">Date of Creation</label>
+            <input type="datetime" id="doc" name="doc" readonly value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+        </div>
+        <div class="form-item">
+            <label for="balance">Balance</label>
+            <input type="number" id="balance" name="balance" />
+        </div>
+        <div class="form-item">
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
+
+<script>
+    function updateRoi() {
+        var type = document.getElementById("type").value;
+        var roi = document.getElementById("roi");
+        if (type === "Savings") {
+            roi.value = "1%";
+        } else if (type === "Current") {
+            roi.value = "2%";
+        } else if (type === "Fixed Deposit") {
+            roi.value = "5%";
+        }
+    }
+</script>
