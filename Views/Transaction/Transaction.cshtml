@@ -1,55 +1,125 @@
+@model BMG.Models.Account
 @{
     ViewData["Title"] = "Transaction";
 }
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-
 <div class="main">
-    <ul class="nav nav-tabs" id="transactionTabs" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="withdraw-tab" data-toggle="tab" href="#withdraw" role="tab" aria-controls="withdraw" aria-selected="true">Withdraw</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="deposit-tab" data-toggle="tab" href="#deposit" role="tab" aria-controls="deposit" aria-selected="false">Deposit</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="transfer-tab" data-toggle="tab" href="#transfer" role="tab" aria-controls="transfer" aria-selected="false">Transfer</a>
-        </li>
-    </ul>
-    <div class="tab-content" id="transactionTabsContent">
-        <div class="tab-pane fade show active" id="withdraw" role="tabpanel" aria-labelledby="withdraw-tab">
-            <form method="post" asp-controller="Transaction" asp-action="Withdraw">
-                <div class="form-group">
-                    <label for="withdrawAmount">Amount</label>
-                    <input type="number" class="form-control" id="withdrawAmount" name="amount" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="tab-container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('withdraw')">Withdraw</button>
+            <button class="tab-button" onclick="showTab('deposit')">Deposit</button>
+            <button class="tab-button" onclick="showTab('transfer')">Transfer</button>
+        </div>
+
+        <div class="tab-content">
+            <div id="withdraw" class="tab-pane active">
+                <form class="withdraw_form" method="post" asp-controller="Transaction" asp-action="Withdraw">
+                    <div class="form-item">
+                        <label for="id">Id</label>
+                        <input type="text" id="id" name="id" value="@Guid.NewGuid()" readonly />
+                    </div>
+                    <div class="form-item">
+                        <input type="hidden" id="type" name="type" value="Withdraw" readonly />
+                    </div>
+                    <div class="form-item">
+                        <input type="hidden" id="sender" name="sender" value="@model.id" readonly />
+                    </div>
+
+                    <div class="form-item">
+                        <input type="hidden" id="receiver" name="receiver" value="@model.id" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="date">Date</label>
+                        <input type="datetime" id="date" name="date" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" />
+                    </div>
+                    <div class="form-item">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+            <div id="deposit" class="tab-pane active">
+                <form class="deposit_form" method="post" asp-controller="Transaction" asp-action="Deposit">
+                    <div class="form-item">
+                        <label for="id">Id</label>
+                        <input type="text" id="id" name="id" value="@Guid.NewGuid()" readonly />
+                    </div>
+                    <div class="form-item">
+                        <input type="hidden" id="type" name="type" value="Deposit" readonly />
+                    </div>
+                    <div class="form-item">
+                        <input type="hidden" id="sender" name="sender" value="@model.id" readonly />
+                    </div>
+
+                    <div class="form-item">
+                        <input type="hidden" id="receiver" name="receiver" value="@model.id" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="date">Date</label>
+                        <input type="datetime" id="date" name="date" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" />
+                    </div>
+                    <div class="form-item">
+                        <input type="submit" value="Submit" />
+                    </div>
             </form>
         </div>
-        <div class="tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
-            <form method="post" asp-controller="Transaction" asp-action="Deposit">
-                <div class="form-group">
-                    <label for="depositAmount">Amount</label>
-                    <input type="number" class="form-control" id="depositAmount" name="amount" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="transfer-tab">
-            <form method="post" asp-controller="Transaction" asp-action="Transfer">
-                <div class="form-group">
-                    <label for="transferAmount">Amount</label>
-                    <input type="number" class="form-control" id="transferAmount" name="amount" required />
-                </div>
-                <div class="form-group">
-                    <label for="receiver">Receiver</label>
-                    <input type="text" class="form-control" id="receiver" name="receiver" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div id="transfer" class="tab-pane">
+                <form class="transfer_form" method="post" asp-controller="Transaction" asp-action="Transfer">
+                    <div class="form-item">
+                        <label for="id">Id</label>
+                        <input type="text" id="id" name="id" value="@Guid.NewGuid()" readonly />
+                    </div>
+                    <div class="form-item">
+                        <input type="hidden" id="type" name="type" value="Transfer" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="sender">Sender Account ID</label>
+                        <input type="text" id="sender" name="sender"/>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="receiver">Receiver Account ID</label>
+                        <input type="text" id="receiver" name="receiver" />
+                    </div>
+                    <div class="form-item">
+                        <label for="date">Date</label>
+                        <input type="datetime" id="date" name="date" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" readonly />
+                    </div>
+                    <div class="form-item">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" />
+                    </div>
+                    <div class="form-item">
+                        <input type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<!-- JavaScript to switch tabs -->
+<script>
+    function showTab(tabName) {
+        // Hide all tabs
+        const tabs = document.querySelectorAll('.tab-pane');
+        tabs.forEach(tab => tab.classList.remove('active'));
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        // Remove active class from all tab buttons
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => button.classList.remove('active'));
+
+        // Show the selected tab
+        document.getElementById(tabName).classList.add('active');
+
+        // Add active class to the clicked button
+        const activeButton = Array.from(tabButtons).find(button => button.textContent.toLowerCase() === tabName);
+        activeButton.classList.add('active');
+    }
+</script>
+

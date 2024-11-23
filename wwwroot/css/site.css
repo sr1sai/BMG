@@ -118,7 +118,9 @@ a:hover {
 .form-item {
     margin-bottom: 15px;
 }
-
+select,
+input[type="datetime"],
+input[type="number"],
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -163,7 +165,6 @@ form{
     justify-content: flex-start;
     width: 100%;
     max-width: 600px;
-    border:1px solid #780000;
 }
 .form-item{
     width:100%;

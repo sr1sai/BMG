@@ -1,37 +1,67 @@
+@model BMG.Models.Account
 @{
     ViewData["Title"] = "Edit Account";
+    var account = Model;
 }
 <div class="main">
-    <div class="navigation">`
-        <a asp-controller="Account" asp-action="Delete">Delete</a>
+    <div class="navigation">
+        <a asp-controller="Account" asp-action="Delete" asp-route-id="@account.id">Delete</a>
     </div>
     <form method="post" asp-controller="Account" asp-action="Edit">
         <div class="form-item">
-            <label for=" fullname">Full Name</label>
-            <input type="text" placeholder="Full Name" id="fullname" name="name" />
+            <label for="type">Type:</label><br>
+            <select id="type" name="type" onchange="updateRoi()">
+                @if(account.type=="Savings"){
+                    <option value="Savings" selected>Savings</option>
+                    <option value="Current">Current</option>
+                    <option value="Fixed Deposit">Fixed Deposit</option>
+                }
+                else if(account.type=="Current"){
+                    <option value="Savings">Savings</option>
+                    <option value="Current" selected>Current</option>
+                    <option value="Fixed Deposit">Fixed Deposit</option>
+                }
+                else if(account.type=="Fixed Deposit"){
+                    <option value="Savings">Savings</option>
+                    <option value="Current">Current</option>
+                    <option value="Fixed Deposit" selected>Fixed Deposit</option>
+                }
+            </select>
         </div>
         <div class="form-item">
-            <label for="username">User Name</label>
-            <input type="text" placeholder="User Name" id="username" name="username" />
+            <label for="roiDisplay">Rate of Interest</label>
+            <input type="text" id="roiDisplay" readonly value="@account.roi.ToString() %" />
+            <input type="hidden" id="roi" name="roi" value="@account.roi" />
         </div>
         <div class="form-item">
-            <label for="password">Password</label>
-            <input type="text" placeholder="Password" id="password" name="password" />
+            <label for="doc">Date of Creation</label>
+            <input type="datetime" id="doc" name="doc" readonly value="@account.doc.ToString("yyyy-MM-ddTHH:mm")" />
         </div>
         <div class="form-item">
-            <label for="address">Address</label>
-            <input type="text" placeholder="Address" id="address" name="address" />
-        </div>
-        <div class="form-item">
-            <label for="phone">Phone</label>
-            <input type="text" placeholder="Phone" id="phone" name="phone" />
-        </div>
-        <div class="form-item">
-            <label for="email">Email</label>
-            <input type="email" placeholder="Email" id="email" name="email" />
+            <label for="balance">Balance</label>
+            <input type="number" id="balance" name="balance" value="@account.balance" />
         </div>
         <div class="form-item">
             <input type="submit" value="Submit" />
         </div>
     </form>
 </div>
+
+<script>
+    function updateRoi() {
+        var type = document.getElementById("type").value;
+        var roiDisplay = document.getElementById("roiDisplay");
+        var roi = document.getElementById("roi");
+        if (type === "Savings") {
+            roiDisplay.value = "1%";
+            roi.value = 1;
+        } else if (type === "Current") {
+            roiDisplay.value = "2%";
+            roi.value = 2;
+        } else if (type === "Fixed Deposit") {
+            roiDisplay.value = "5%";
+            roi.value = 5;
+        }
+    }
+</script>
+

@@ -7,7 +7,6 @@
 <div class="main">
     <div class="navigation">
         <a asp-controller="Home" asp-action="NewAccount">New Account</a>
-        <a asp-controller="Home" asp-action="Profile">Profile</a>
     </div>
     <div class="list">
         @if (accounts != null && accounts.Count > 0)
@@ -32,7 +31,16 @@
                     <td>@accounts[i].type</td>
                     <td>@accounts[i].roi</td>
                     <td>@accounts[i].balance</td>
-                    <td><a asp-controller="Home" asp-action="Select" asp-route-id="@accounts[i].id">Select</a></td>
+                    <td>
+                        <form method="post" asp-controller="Home" asp-action="Select">
+                            <div class="form-item">
+                                  <input type="hidden" value="@accounts[i].id" id="id" name="id" />
+                            </div>
+                            <div class="form-item">
+                                <input type="submit" value="Select" />
+                            </div>
+                        </form>
+                    </td>
                 </tr>
                 }
             </tbody>

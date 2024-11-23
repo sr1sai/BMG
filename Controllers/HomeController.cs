@@ -32,7 +32,7 @@ public class HomeController : Controller
     {
         if (_userService.currentUser != null)
         {
-            return View("~/Views/Customer/Profile.cshtml",_userService.currentUser);
+            return View("~/Views/Customer/Profile.cshtml", _userService.currentUser);
         }
         else
         {
@@ -52,12 +52,23 @@ public class HomeController : Controller
         }
     }
 
-    public IActionResult Select(Account account)
+    public IActionResult Select(string id)
     {
+        Console.WriteLine("Selecting account with id: " + id);
         if (_userService.currentUser != null)
         {
-            _userService.currentAccount = account;
-            return View("~/Views/Account/Account.cshtml",account);
+            var accounts = _userService.currentUser.accounts;
+            if (accounts != null)
+            {
+                Account? account = accounts.Find(a => a.id == id);
+                if (account != null)
+                {
+                    Console.WriteLine("Account found: " + account.id);
+                    _userService.currentAccount = account;
+                    return View("~/Views/Account/Account.cshtml", account);
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
         else
         {

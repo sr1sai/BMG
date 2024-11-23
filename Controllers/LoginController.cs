@@ -66,6 +66,7 @@ public class LoginController : Controller
             _userService.customers.Add(customer);
             _userService.usernames.Add(customer.username ?? string.Empty);
             Console.WriteLine("User Registered.");
+            Console.WriteLine("ID: " + _userService.customers[_userService.customers.Count - 1].id);
             Console.WriteLine("Name: " + _userService.customers[_userService.customers.Count - 1].name);
             Console.WriteLine("Username: " + _userService.customers[_userService.customers.Count - 1].username);
             Console.WriteLine("Password: " + _userService.customers[_userService.customers.Count - 1].password);

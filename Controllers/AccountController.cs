@@ -72,6 +72,19 @@ public class AccountController : Controller
         }
     }
 
+    public IActionResult EditAccount()
+    {
+        if (_userService.currentUser != null)
+        {
+            return View("~/Views/Account/EditAccount.cshtml", _userService.currentAccount);
+        }
+        else
+        {
+            Console.WriteLine("No current user found.");
+            return RedirectToAction("Login", "Login");
+        }
+    }
+
     public IActionResult Edit(Account account)
     {
         if (_userService.currentUser != null)
@@ -107,7 +120,7 @@ public class AccountController : Controller
     {
         if (_userService.currentUser != null)
         {
-            return View("~Views/Transaction/Transaction.cshtml");
+            return View("~/Views/Transaction/Transaction.cshtml");
         }
         else
         {
