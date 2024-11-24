@@ -1,6 +1,7 @@
 @model BMG.Models.Account
 @{
     ViewData["Title"] = "Transaction";
+    var Account = Model;
 }
 <div class="main">
     <div class="tab-container">
@@ -21,11 +22,11 @@
                         <input type="hidden" id="type" name="type" value="Withdraw" readonly />
                     </div>
                     <div class="form-item">
-                        <input type="hidden" id="sender" name="sender" value="@model.id" readonly />
+                        <input type="hidden" id="sender" name="sender" value="@Account.id" readonly />
                     </div>
 
                     <div class="form-item">
-                        <input type="hidden" id="receiver" name="receiver" value="@model.id" readonly />
+                        <input type="hidden" id="receiver" name="receiver" value="@Account.id" readonly />
                     </div>
                     <div class="form-item">
                         <label for="date">Date</label>
@@ -40,7 +41,7 @@
                     </div>
                 </form>
             </div>
-            <div id="deposit" class="tab-pane active">
+            <div id="deposit" class="tab-pane">
                 <form class="deposit_form" method="post" asp-controller="Transaction" asp-action="Deposit">
                     <div class="form-item">
                         <label for="id">Id</label>
@@ -50,11 +51,11 @@
                         <input type="hidden" id="type" name="type" value="Deposit" readonly />
                     </div>
                     <div class="form-item">
-                        <input type="hidden" id="sender" name="sender" value="@model.id" readonly />
+                        <input type="hidden" id="sender" name="sender" value="@Account.id" readonly />
                     </div>
 
                     <div class="form-item">
-                        <input type="hidden" id="receiver" name="receiver" value="@model.id" readonly />
+                        <input type="hidden" id="receiver" name="receiver" value="@Account.id" readonly />
                     </div>
                     <div class="form-item">
                         <label for="date">Date</label>
@@ -67,8 +68,8 @@
                     <div class="form-item">
                         <input type="submit" value="Submit" />
                     </div>
-            </form>
-        </div>
+                </form>
+            </div>
             <div id="transfer" class="tab-pane">
                 <form class="transfer_form" method="post" asp-controller="Transaction" asp-action="Transfer">
                     <div class="form-item">
@@ -80,7 +81,7 @@
                     </div>
                     <div class="form-item">
                         <label for="sender">Sender Account ID</label>
-                        <input type="text" id="sender" name="sender"/>
+                        <input type="text" id="sender" name="sender" value="@Account.id" readonly />
                     </div>
 
                     <div class="form-item">

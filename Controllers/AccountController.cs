@@ -120,7 +120,7 @@ public class AccountController : Controller
     {
         if (_userService.currentUser != null)
         {
-            return View("~/Views/Transaction/Transaction.cshtml");
+            return View("~/Views/Transaction/Transaction.cshtml",_userService.currentAccount);
         }
         else
         {
